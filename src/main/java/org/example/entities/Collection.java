@@ -51,5 +51,16 @@ public class Collection {
     }
 
     //4 RICERCA PER NUMERO DI GIOCATORI
-    
+    public List<BoardGames> numOfPlayers(int n) {
+        return listaGiochi.stream()
+                .filter(g -> g instanceof BoardGames)
+                .map(g -> (BoardGames) g)
+                .filter(singleBGame -> singleBGame.getNumPlayers() == n)
+                .toList();
+    }
+
+    //5 RIMOZIONE DI UN GIOCO DATO UN ID
+    public void rimuoviPerId(Long id) {
+        listaGiochi.removeIf(g -> g.getId().equals(id));
+    }
 }
