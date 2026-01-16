@@ -63,4 +63,43 @@ public class Collection {
     public void rimuoviPerId(Long id) {
         listaGiochi.removeIf(g -> g.getId().equals(id));
     }
+
+    //6 AGGIORNAMENTO ELEMENTO ESISTENTE TRAMITE ID
+    public void aggiornaGame(Long id, String newTitle, double newPrice, int newYear) throws Exception {
+        Games gameFound = ricercaId(id);
+        if (gameFound == null) {
+            throw new Exception("impossibile aggiornare gioco: " + id + " ID non trovato");
+        }
+        gameFound.setTitolo(newTitle);
+        gameFound.setPrice(newPrice);
+        gameFound.setAnnoPubblicazione(newYear);
+
+        System.out.println("Aggiornamento del prodotto avvenuto con successo");
+    }
+
+    //7 MEDIA PRODOTTI PER GIOCHI TOTALI PRESENTI NEL CATALOGO, GIOCO CON PREZZO PIU' ALTO, MEDIA PREZZI ELEMENTI
+    //totale presente nel catalogo
+    public void totalGames() {
+        System.out.println("il totale dei giochi presenti nel catalogo è: " + listaGiochi.size());
+    }
+
+    //gioco col prezzo più alto
+    public void stampaGiocoPiuCaro() {
+        listaGiochi.stream()
+                // Cerchiamo il massimo in base al prezzo
+                .max((g1, g2) -> Double.compare(g1.getPrice(), g2.getPrice()))
+                // Se lo trovi, fai questo; altrimenti, fai quello
+                .ifPresentOrElse(
+                        gioco -> System.out.println("Il gioco col prezzo più alto è: " + gioco.getTitolo()),
+                        () -> System.out.println("Il catalogo è vuoto, non posso calcolare il prezzo più alto.")
+                );
+    }
+
+    //media totale dei giochi presenti
+    public void mediaPrice() {
+        listaGiochi.stream()
+                .mapToDouble(g -> g.getPrice())
+                .average()
+                .orElse(0.0);
+    }
 }
