@@ -62,9 +62,11 @@ public class Application {
                             System.out.println("Scegli Genere: (ACTION, RPG, SPORT, FPS, PLATFORM)");
                             String genereStr = scanner.nextLine().toUpperCase();
                             Tipes genere = Tipes.valueOf(genereStr);
+                            System.out.println("inserisci ore di gioco: ");
                             int playTimes = Integer.parseInt(scanner.nextLine());
 
                             collection.addGame(new Videogames(id, titolo, anno, prezzo, piattaforma, playTimes, genere));
+                            System.out.println(collection);
                         } else if (tipo == 2) {
                             System.out.print("Inserisci Numero Giocatori: ");
                             int numG = Integer.parseInt(scanner.nextLine());
