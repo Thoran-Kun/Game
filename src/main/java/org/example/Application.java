@@ -47,8 +47,6 @@ public class Application {
                     case 1 -> {
                         System.out.println("Cosa vuoi aggiungere? (1. Videogioco | 2. Gioco da Tavolo)");
                         int tipo = Integer.parseInt(scanner.nextLine());
-
-                        // --- DATI COMUNI ---
                         System.out.print("Inserisci ID: ");
                         Long id = Long.parseLong(scanner.nextLine());
                         System.out.print("Inserisci Titolo: ");
